@@ -107,7 +107,7 @@ section{padding:56px 0}
 .off ul{list-style:none;margin:0;padding:0;display:grid;gap:14px}
 .off li{display:grid;grid-template-columns:48px 1fr;gap:14px;align-items:center;font-size:17px}
 .off svg{width:48px;height:48px}
-.board{width:100%;max-width:540px;justify-self:end;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);background:var(--card)}
+.board{width:100%;max-width:620px;justify-self:end;border:2px solid var(--ink);box-shadow:6px 6px 0 var(--ink);background:var(--card)}
 .board figcaption{font:400 12px var(--mono);color:var(--muted);padding:8px 10px;border-top:2px solid var(--ink)}
 
 /* Contact */
@@ -271,11 +271,15 @@ section{padding:56px 0}
       </li>
     </ul>
     <figure class="board" style="margin:0">
-      <svg viewBox="0 0 8 8" role="img" aria-label="Échiquier avec quelques pièces" style="display:block;width:100%">
-        <defs><pattern id="sq" width="2" height="2" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="#cfe0ea"/><rect x="1" y="1" width="1" height="1" fill="#cfe0ea"/><rect x="1" width="1" height="1" fill="#f7fbfd"/><rect y="1" width="1" height="1" fill="#f7fbfd"/></pattern></defs>
+      <svg viewBox="0 0 8 8" role="img" aria-label="Échiquier : un milieu de partie, le cavalier rouge attaque le fou et le pion f7" style="display:block;width:100%">
+        <defs><pattern id="sq" width="2" height="2" patternUnits="userSpaceOnUse"><rect width="1" height="1" fill="#c3d7e3"/><rect x="1" y="1" width="1" height="1" fill="#c3d7e3"/><rect x="1" width="1" height="1" fill="#f7fbfd"/><rect y="1" width="1" height="1" fill="#f7fbfd"/></pattern></defs>
         <rect width="8" height="8" fill="url(#sq)"/>
-        <g font-family="serif" font-size="0.82" text-anchor="middle" fill="#0f2038">
-          <text x="4.5" y="1.2">♚</text><text x="2.5" y="2.2">♟</text><text x="5.5" y="3.2">♟</text><text x="3.5" y="4.2" fill="#cf3a2c">♞</text><text x="1.5" y="6.2" fill="#fff" stroke="#0f2038" stroke-width="0.04">♔</text><text x="6.5" y="6.2" fill="#fff" stroke="#0f2038" stroke-width="0.04">♖</text>
+        <g stroke="#cf3a2c" stroke-width="0.07" stroke-dasharray="0.18 0.14" fill="none"><path d="M4.5 3.5 L2.5 2.5"/><path d="M4.5 3.5 L5.5 1.5"/></g>
+        <circle cx="4.5" cy="3.5" r="0.47" fill="none" stroke="#cf3a2c" stroke-width="0.07"/>
+        <g font-family="'Segoe UI Symbol','Noto Sans Symbols 2','DejaVu Sans','Arial Unicode MS',serif" font-size="0.98" text-anchor="middle" stroke="#0f2038" stroke-width="0.05" paint-order="stroke">
+          <g fill="#0f2038"><text x="6.5" y="0.84">&#9818;&#xFE0E;</text><text x="3.5" y="0.84">&#9820;&#xFE0E;</text><text x="5.5" y="1.84">&#9823;&#xFE0E;</text><text x="6.5" y="1.84">&#9823;&#xFE0E;</text><text x="7.5" y="1.84">&#9823;&#xFE0E;</text><text x="0.5" y="1.84">&#9823;&#xFE0E;</text><text x="1.5" y="1.84">&#9823;&#xFE0E;</text><text x="2.5" y="2.84">&#9821;&#xFE0E;</text></g>
+          <g fill="#ffffff"><text x="6.5" y="7.84">&#9818;&#xFE0E;</text><text x="3.5" y="7.84">&#9820;&#xFE0E;</text><text x="5.5" y="6.84">&#9823;&#xFE0E;</text><text x="6.5" y="6.84">&#9823;&#xFE0E;</text><text x="7.5" y="6.84">&#9823;&#xFE0E;</text><text x="0.5" y="6.84">&#9823;&#xFE0E;</text><text x="1.5" y="6.84">&#9823;&#xFE0E;</text></g>
+          <text x="4.5" y="3.84" fill="#cf3a2c">&#9822;&#xFE0E;</text>
         </g>
       </svg>
       <figcaption>Position d'illustration. Le cavalier rouge est celui qu'on oublie de regarder.</figcaption>
