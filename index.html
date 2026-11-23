@@ -252,12 +252,13 @@ section{padding:56px 0}
     <article id="f1" class="fiche">
       <div class="no">FICHE 01<a class="demo" href="https://nathan-docsense.streamlit.app/" target="_blank" rel="noopener">tester la démo ↗</a></div>
       <h3>DocSense</h3>
-      <p class="clair"><b>En clair</b>L'agent retrouve bien plus souvent le bon passage d'un PDF (0,58 → 0,83) et préfère refuser de répondre plutôt qu'inventer. Un point reste à corriger : la fidélité de ses réponses a baissé (0,57 → 0,51).</p>
+      <p class="clair"><b>Le projet</b>Un assistant qui lit un rapport PDF financier et répond à des questions en citant ses pages sources. Le but : qu'il dise « je ne sais pas » quand l'information n'est pas dans le document, au lieu d'inventer.</p>
       <dl>
         <dt>Question</dt><dd>Peut-on faire confiance à un agent qui lit des documents financiers ?</dd>
         <dt>Fait</dt><dd>RAG hybride BM25 + FAISS, agent ReAct, second contrôle contre les hallucinations. Il cite ses pages sources.</dd>
+        <dt>Ce que j'ai trouvé</dt><dd>L'agent retrouve bien plus souvent le bon passage d'un PDF (0,58 → 0,83) et préfère refuser de répondre plutôt qu'inventer. Un point reste à corriger : la fidélité de ses réponses a baissé (0,57 → 0,51).</dd>
         <dt>Résultat</dt><dd class="res">précision du contexte 0,58 → 0,83<br>26 tests automatisés</dd>
-        <dt>Suite</dt><dd>Dockerfile, intégration continue, démo publique.</dd>
+        <dt>Suite</dt><dd>Dockerfile, intégration continue, jeu de 50 questions ou plus.</dd>
       </dl>
       <button class="more" type="button" aria-expanded="false" aria-controls="d1" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/docsense">Voir le code</a>
       <div class="detail" id="d1"><div class="inner"><div class="dbody">
@@ -286,12 +287,13 @@ section{padding:56px 0}
     </article>
 
     <article id="f2" class="fiche">
-      <div class="no">FICHE 02</div>
+      <div class="no">FICHE 02<span class="soon">démo : en cours</span></div>
       <h3>Name Recall, Not Prediction</h3>
-      <p class="clair"><b>En clair</b>Pour les entreprises les plus anciennes, donner son nom à l'entreprise améliore la prédiction du modèle : il semble la reconnaître. Pour les récentes, ça ne change rien. Sans le nom, les modèles devinent à peine mieux que le hasard.</p>
+      <p class="clair"><b>Le projet</b>Une expérience de recherche sur les modèles de langage, les IA qui écrivent du texte. Je leur demande si une startup Y Combinator réussira, d'abord avec le nom de l'entreprise, puis sans, pour voir si leur score vient d'une vraie prédiction ou d'un souvenir.</p>
       <dl>
         <dt>Question</dt><dd>Un LLM prédit-il le succès d'une startup, ou connaît-il simplement son nom ?</dd>
         <dt>Fait</dt><dd>3 611 entreprises Y Combinator, 10 modèles open-weight, article de recherche rédigé.</dd>
+        <dt>Ce que j'ai trouvé</dt><dd>Pour les entreprises les plus anciennes, donner son nom à l'entreprise améliore la prédiction du modèle : il semble la reconnaître. Pour les récentes, ça ne change rien. Sans le nom, les modèles devinent à peine mieux que le hasard.</dd>
         <dt>Résultat</dt><dd class="res">effet −0,027 (différence de différences)<br>+0,027 mesuré sur les lots 2010–2016</dd>
         <dt>Le piège</dt><dd>Un score qui monte peut venir de la mémoire, pas de la prédiction.</dd>
       </dl>
@@ -323,10 +325,11 @@ section{padding:56px 0}
     <article id="f3" class="fiche">
       <div class="no">FICHE 03 · PFE</div>
       <h3>IDS-XAI</h3>
-      <p class="clair"><b>En clair</b>Le score de 0,972 baisse peu (−1,1 point) quand je retire une variable suspecte, mais s'effondre à 0,565 sur un autre jeu de données. Régler le modèle ne comble pas l'écart : le problème vient plutôt des données.</p>
+      <p class="clair"><b>Le projet</b>Mon projet de fin d'études : un programme qui repère les attaques dans le trafic d'un réseau informatique, et des outils qui expliquent pourquoi il classe un trafic comme une attaque. Je cherche surtout à savoir si son excellent score est fiable.</p>
       <dl>
         <dt>Question</dt><dd>Le score d'un détecteur d'intrusion vient-il du modèle ou du jeu de données ?</dd>
         <dt>Fait</dt><dd>XGBoost et FT-Transformer sur CIC-IDS2017 et UNSW-NB15, explications SHAP contre LIME, test de fuite.</dd>
+        <dt>Ce que j'ai trouvé</dt><dd>Le score de 0,972 baisse peu (−1,1 point) quand je retire une variable suspecte, mais s'effondre à 0,565 sur un autre jeu de données. Régler le modèle ne comble pas l'écart : le problème vient plutôt des données.</dd>
         <dt>Résultat</dt><dd class="res">F1 0,972 → 0,961 sans le port<br>0,565 sur UNSW-NB15<br>stabilité SHAP 1,00 · LIME 0,56</dd>
         <dt>À faire</dt><dd class="bad">Découpage temporel pas encore testé. Notebook du test de fuite non publié.</dd>
       </dl>
@@ -356,7 +359,7 @@ section{padding:56px 0}
     <article id="f4" class="fiche">
       <div class="no">FICHE 04<a class="demo" href="https://nathan-food-security-agent.streamlit.app/" target="_blank" rel="noopener">tester la démo ↗</a></div>
       <h3>Food Security Early Warning Agent</h3>
-      <p class="clair"><b>En clair</b>Un agent qui répond aux questions d'un analyste sur le risque d'insécurité alimentaire d'une région, en s'appuyant sur des rapports et des données climatiques, avec des garde-fous contre les injections de prompt. Les chiffres d'évaluation ne sont pas encore publiés.</p>
+      <p class="clair"><b>Le projet</b>Un agent qui répond aux questions d'un analyste sur le risque d'insécurité alimentaire d'une région, en s'appuyant sur des rapports et des données climatiques, avec des garde-fous contre les injections de prompt.</p>
       <dl>
         <dt>Question</dt><dd>Un agent tient-il face aux injections de prompt ?</dd>
         <dt>Fait</dt><dd>Serveur MCP, garde-fous, tests d'injection, scripts d'évaluation RAGAS, de coût et de latence.</dd>
@@ -388,10 +391,11 @@ section{padding:56px 0}
       <span class="stamp">Échec documenté</span>
       <div class="no">FICHE 05</div>
       <h3>UR5, prise par ventouse</h3>
-      <p class="clair"><b>En clair</b>Le bras n'arrive jamais assez près du carton : il s'arrête à 14, 68 ou 113 cm, au lieu des 2 cm nécessaires. Je sais où ça casse, pas encore pourquoi.</p>
+      <p class="clair"><b>Le projet</b>Un bras robot industriel (UR5), simulé sur ordinateur, censé saisir un carton avec une ventouse puis le déposer ailleurs. Dans la simulation, il ne l'a encore jamais saisi.</p>
       <dl>
         <dt>Question</dt><dd>Pourquoi un bras simulé ne saisit-il jamais le carton ?</dd>
         <dt>Fait</dt><dd>Simulation PyBullet de prise et dépose. Mesure de la distance entre l'effecteur et le carton en fin de descente, essai par essai.</dd>
+        <dt>Ce que j'ai trouvé</dt><dd>Le bras n'arrive jamais assez près du carton : il s'arrête à 14, 68 ou 113 cm, au lieu des 2 cm nécessaires. Je sais où ça casse, pas encore pourquoi.</dd>
         <dt>Résultat</dt><dd class="res">0 prise sur 8 essais<br>effecteur à 14, 68 ou 113 cm du carton, pour un seuil de contact de 2 cm</dd>
         <dt>Inconnu</dt><dd class="bad">La cause racine. Hypothèses notées dans le dépôt : zone de travail, posture de repos, limites articulaires, décalage du repère de l'effecteur.</dd>
       </dl>
