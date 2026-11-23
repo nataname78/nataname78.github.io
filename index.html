@@ -93,6 +93,71 @@ section{padding:56px 0}
 .fiche .go:hover{background:var(--hl)}
 .stamp{position:absolute;top:18px;right:16px;border:3px solid var(--pen);color:var(--pen);font:700 13px var(--mono);letter-spacing:.1em;padding:3px 9px;transform:rotate(7deg);border-radius:4px;text-transform:uppercase;background:rgba(251,253,254,.8)}
 
+/* Fiches dépliables */
+.fiches{align-items:start}
+.clair{margin:0 0 14px;line-height:1.5}
+.clair b{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;background:var(--hl);padding:1px 6px;margin-right:8px;font-weight:500}
+.more{margin-top:14px;display:inline-flex;gap:10px;align-items:center;font:600 15px var(--body);color:var(--ink);background:var(--card);border:2px solid var(--ink);border-radius:6px;padding:8px 14px;cursor:pointer;box-shadow:3px 3px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.more:hover{transform:translate(2px,2px);box-shadow:1px 1px 0 var(--ink)}
+.more i{font:500 18px/1 var(--mono);font-style:normal;display:inline-block;transition:transform .3s}
+.more[aria-expanded="true"] i{transform:rotate(45deg)}
+.more.mini{padding:4px 10px;font-size:13px;margin-top:8px;box-shadow:2px 2px 0 var(--ink)}
+.fiche .go{margin-left:18px}
+.soon{font:500 11px var(--mono);color:var(--pen);border:1.5px dashed var(--pen);border-radius:999px;padding:1px 9px;margin-left:10px;letter-spacing:0;text-transform:none}
+.detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)}
+.detail.open{grid-template-rows:1fr}
+.detail>.inner{overflow:hidden;min-height:0}
+.dbody{margin-top:16px;padding-top:18px;border-top:2px dashed var(--line);display:grid;gap:20px;font-size:15px}
+.dbody>*{opacity:0;transform:translateY(8px);transition:opacity .4s,transform .4s}
+.detail.open .dbody>*{opacity:1;transform:none}
+.detail.open .dbody>*:nth-child(2){transition-delay:.08s}
+.detail.open .dbody>*:nth-child(3){transition-delay:.16s}
+.detail.open .dbody>*:nth-child(4){transition-delay:.24s}
+.detail.open .dbody>*:nth-child(5){transition-delay:.32s}
+.dbody h4{font:500 11px var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:0 0 8px}
+.dbody ul{margin:0;padding-left:18px}
+.dbody li{margin:3px 0}
+.dbody p{margin:0}
+.dbody .t{display:flex;flex-wrap:wrap;gap:6px}
+.dbody .t span{font:400 12px var(--mono);border:1px solid var(--line);background:var(--paper);border-radius:6px;padding:2px 8px}
+.dbody .hint{font:400 12px/1.5 var(--mono);color:var(--muted);margin-top:8px}
+.mrow{display:grid;grid-template-columns:118px 1fr 92px;gap:10px;align-items:center;font:400 12.5px var(--mono);margin:4px 0}
+.mrow .tr{position:relative;height:22px;border-left:2px solid var(--ink)}
+.mrow .b{position:absolute;left:0;height:9px;width:0;transition:width .9s .25s cubic-bezier(.2,.8,.2,1)}
+.mrow .a{top:0;background:var(--line)}
+.mrow .c{top:11px;background:var(--ink)}
+.mrow .c.bad{background:var(--pen)}
+.detail.open .b{width:var(--w)}
+.mrow .vv{text-align:right}
+.ci{position:relative;margin:6px 0 0}
+.cirow{display:grid;grid-template-columns:118px 1fr 112px;gap:10px;align-items:center;font:400 12.5px var(--mono);margin:6px 0}
+.cirow .tr{position:relative;height:22px;background:linear-gradient(var(--line),var(--line)) center/100% 1px no-repeat}
+.cirow .tr::before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:2px dashed var(--muted)}
+.cirow .s{position:absolute;top:9px;height:4px;background:var(--ink);left:var(--l);width:0;transition:width .8s .25s cubic-bezier(.2,.8,.2,1)}
+.detail.open .cirow .s{width:var(--wd)}
+.cirow .p{position:absolute;top:5px;width:12px;height:12px;border-radius:50%;background:var(--pen);left:var(--p);transform:translateX(-50%) scale(0);transition:transform .4s .8s}
+.detail.open .cirow .p{transform:translateX(-50%) scale(1)}
+.cirow .vv{text-align:right}
+.scale{display:grid;grid-template-columns:118px 1fr 112px;gap:10px;font:400 11px var(--mono);color:var(--muted)}
+.scale span{display:flex;justify-content:space-between}
+.scale i{font-style:normal}
+.tab{width:100%;border-collapse:collapse;font-size:14px}
+.tab th,.tab td{text-align:left;padding:5px 8px 5px 0;border-bottom:1px solid var(--line)}
+.tab th{font:500 11px var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.tab td.n{font-family:var(--mono)}
+.dist{position:relative;height:74px;margin:8px 0 0;border-left:2px solid var(--ink);background:linear-gradient(var(--line),var(--line)) 0 46px/100% 2px no-repeat}
+.dist .th{position:absolute;left:1.7%;top:0;bottom:0;border-left:2px dashed var(--pen)}
+.dist .th em{position:absolute;left:6px;top:0;font:500 11px var(--mono);color:var(--pen);font-style:normal;white-space:nowrap}
+.dist .d{position:absolute;top:34px;width:26px;height:26px;border-radius:50%;background:var(--ink);color:#fff;font:500 13px/26px var(--mono);text-align:center;left:var(--x);transform:translateX(-50%) scale(0);transition:transform .45s cubic-bezier(.3,1.6,.5,1)}
+.detail.open .dist .d{transform:translateX(-50%) scale(1)}
+.dist .d:nth-of-type(3){transition-delay:.3s}
+.dist .d:nth-of-type(4){transition-delay:.45s}
+.dist .lab{position:absolute;top:62px;font:400 11px var(--mono);color:var(--muted);left:var(--x);transform:translateX(-50%)}
+.log li .more{display:inline-flex}
+.log .detail .dbody{margin-top:10px;padding-top:14px}
+@media (max-width:520px){.mrow,.cirow,.scale{grid-template-columns:84px 1fr 84px;gap:6px}.fiche .go{margin-left:0;display:block;margin-top:12px}}
+@media (prefers-reduced-motion:reduce){.detail,.dbody>*,.mrow .b,.cirow .s,.cirow .p,.dist .d,.more i{transition:none}}
+
 /* Ce qui ne marche pas encore */
 .raw{background:var(--ink);color:#e8f0f7;border-radius:10px;padding:30px 28px;position:relative}
 .raw h2{font:800 clamp(26px,4vw,38px)/1.05 var(--display);margin:0 0 6px;letter-spacing:-.02em}
@@ -173,66 +238,174 @@ section{padding:56px 0}
   <p class="sub">Chaque fiche pose une question, dit ce que j'ai fait, donne le résultat, et note ce qui reste faux ou inconnu. Le code est public.</p>
 
   <div class="fiches">
+
     <article class="fiche">
-      <div class="no">FICHE 01</div>
+      <div class="no">FICHE 01<span class="soon">démo : bientôt</span></div>
       <h3>DocSense</h3>
+      <p class="clair"><b>En clair</b>L'agent retrouve bien plus souvent le bon passage d'un PDF (0,58 → 0,83) et préfère refuser de répondre plutôt qu'inventer. Un point reste à corriger : la fidélité de ses réponses a baissé (0,57 → 0,51).</p>
       <dl>
         <dt>Question</dt><dd>Peut-on faire confiance à un agent qui lit des documents financiers ?</dd>
-        <dt>Fait</dt><dd>RAG hybride BM25 + FAISS, agent ReAct, second contrôle contre les hallucinations. Il refuse de répondre quand l'information n'est pas dans le document.</dd>
+        <dt>Fait</dt><dd>RAG hybride BM25 + FAISS, agent ReAct, second contrôle contre les hallucinations. Il cite ses pages sources.</dd>
         <dt>Résultat</dt><dd class="res">précision du contexte 0,58 → 0,83<br>26 tests automatisés</dd>
         <dt>Suite</dt><dd>Dockerfile, intégration continue, démo publique.</dd>
       </dl>
-      <a class="go" href="https://github.com/nataname78/docsense">Voir le code</a>
+      <button class="more" type="button" aria-expanded="false" aria-controls="d1" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/docsense">Voir le code</a>
+      <div class="detail" id="d1"><div class="inner"><div class="dbody">
+        <div><h4>Ce que j'ai construit</h4><ul>
+          <li>Lecture des PDF : texte avec PyMuPDF, tableaux avec pdfplumber, découpage en morceaux de 3 200 caractères.</li>
+          <li>Recherche hybride : BM25 et FAISS fusionnés (Reciprocal Rank Fusion), puis reclassement par un cross-encoder.</li>
+          <li>Agent ReAct à 6 outils, dont un outil pour lire un chiffre exact dans un tableau. Sa trace de raisonnement est visible dans l'interface.</li>
+          <li>Contrôle anti-hallucination : consignes strictes et, en option, un second modèle qui remplace la réponse par un refus si une affirmation n'est pas appuyée.</li>
+        </ul></div>
+        <div><h4>Évaluation : V2.7 (gris) contre V3 (foncé), 12 questions</h4>
+          <div class="mrow"><span>Pertinence</span><div class="tr"><div class="b a" style="--w:88%"></div><div class="b c" style="--w:90%"></div></div><span class="vv">0,88 → 0,90</span></div>
+          <div class="mrow"><span>Précision ctx.</span><div class="tr"><div class="b a" style="--w:58%"></div><div class="b c" style="--w:83%"></div></div><span class="vv">0,58 → 0,83</span></div>
+          <div class="mrow"><span>Rappel ctx.</span><div class="tr"><div class="b a" style="--w:56%"></div><div class="b c" style="--w:75%"></div></div><span class="vv">0,56 → 0,75</span></div>
+          <div class="mrow"><span>Qualité refus</span><div class="tr"><div class="b c" style="--w:100%"></div></div><span class="vv">1,00</span></div>
+          <div class="mrow"><span>Fidélité</span><div class="tr"><div class="b a" style="--w:57%"></div><div class="b c bad" style="--w:51%"></div></div><span class="vv">0,57 → 0,51</span></div>
+          <p class="hint">La baisse de fidélité vient, d'après mes notes, d'erreurs de limite de débit pendant l'évaluation : une relance hors saturation donne 0,61.</p>
+        </div>
+        <div><h4>Ce qui reste limité</h4><ul>
+          <li>Seulement 12 questions : un résultat isolé pèse beaucoup.</li>
+          <li>Le même modèle (Mistral) génère les réponses et les juge : biais d'auto-évaluation.</li>
+          <li>Un seul corpus (LVMH 2022-2023), pas de Dockerfile ni d'intégration continue, pas d'OCR pour les PDF scannés.</li>
+          <li>Prévu : 50 questions ou plus, un juge externe, Docker, GitHub Actions, une démo en ligne.</li>
+        </ul></div>
+        <div><h4>Compétences</h4><div class="t"><span>Python</span><span>RAG</span><span>FAISS</span><span>BM25</span><span>agents ReAct</span><span>évaluation LLM</span><span>pytest</span></div></div>
+      </div></div></div>
     </article>
 
     <article class="fiche">
       <div class="no">FICHE 02</div>
       <h3>Name Recall, Not Prediction</h3>
+      <p class="clair"><b>En clair</b>Pour les entreprises les plus anciennes, donner son nom à l'entreprise améliore la prédiction du modèle : il semble la reconnaître. Pour les récentes, ça ne change rien. Sans le nom, les modèles devinent à peine mieux que le hasard.</p>
       <dl>
         <dt>Question</dt><dd>Un LLM prédit-il le succès d'une startup, ou connaît-il simplement son nom ?</dd>
         <dt>Fait</dt><dd>3 611 entreprises Y Combinator, 10 modèles open-weight, article de recherche rédigé.</dd>
         <dt>Résultat</dt><dd class="res">effet −0,027 (différence de différences)<br>+0,027 mesuré sur les lots 2010–2016</dd>
         <dt>Le piège</dt><dd>Un score qui monte peut venir de la mémoire, pas de la prédiction.</dd>
       </dl>
-      <a class="go" href="https://github.com/nataname78/yc-name-recall">Voir le code</a>
+      <button class="more" type="button" aria-expanded="false" aria-controls="d2" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/yc-name-recall">Voir le code</a>
+      <div class="detail" id="d2"><div class="inner"><div class="dbody">
+        <div><h4>Comment j'ai mesuré</h4><ul>
+          <li>10 modèles open-weight, de 0,5 à 4 milliards de paramètres.</li>
+          <li>3 611 entreprises de 25 promotions Y Combinator, notées deux fois : avec le nom, puis sans le nom ni ses variantes, dans la consigne et dans la description.</li>
+          <li>Score = probabilité de répondre « oui » plutôt que « non » à une question, lue en un seul passage, ce qui évite les notes à égalité d'une réponse chiffrée.</li>
+          <li>Évaluation par promotion (AUC), car les taux de réussite varient d'une cohorte à l'autre.</li>
+        </ul></div>
+        <div><h4>Effet du nom sur l'AUC (intervalle de confiance à 95 %)</h4>
+          <div class="cirow"><span>Lots 2010–2016</span><div class="tr"><div class="s" style="--l:61%;--wd:29%"></div><div class="p" style="--p:77%"></div></div><span class="vv">+0,027</span></div>
+          <div class="cirow"><span>Lots 2017–2022</span><div class="tr"><div class="s" style="--l:41%;--wd:18%"></div><div class="p" style="--p:50%"></div></div><span class="vv">−0,000</span></div>
+          <div class="cirow"><span>Différence</span><div class="tr"><div class="s" style="--l:7%;--wd:33%"></div><div class="p" style="--p:23%"></div></div><span class="vv">−0,027</span></div>
+          <div class="scale"><span></span><span><i>−0,05</i><i>0</i><i>+0,05</i></span><span></span></div>
+          <p class="hint">Intervalles : [+0,011 ; +0,040], [−0,009 ; +0,009] et [−0,043 ; −0,010]. Sans le nom, l'AUC reste entre 0,41 et 0,53, proche du hasard.</p>
+        </div>
+        <div><h4>Ce qui reste limité</h4><ul>
+          <li>Les modèles testés sont bien plus petits que ceux de l'affirmation auditée. Extrapoler à de plus grands modèles (environ +0,16 à 600 milliards) est une projection, pas une mesure.</li>
+          <li>Les descriptions d'entreprise sont celles d'aujourd'hui, pas celles de la date de chaque promotion. Le succès est une étiquette grossière, et seules des entreprises Y Combinator sont étudiées.</li>
+          <li>Deux erreurs de mesure repérées et corrigées : une échelle d'entiers dégénérée et un bloc de raisonnement des modèles Qwen3. Les résultats Qwen3 non corrigés sont exclus.</li>
+          <li>Une hypothèse n'a pas tenu avec plus de modèles : le déplacement de la fenêtre de mémorisation vers les promotions récentes (+0,007).</li>
+        </ul></div>
+        <div><h4>Compétences</h4><div class="t"><span>Python</span><span>évaluation de LLM</span><span>statistiques</span><span>AUC</span><span>intervalles de confiance</span><span>différence de différences</span><span>rédaction scientifique (LaTeX)</span></div></div>
+      </div></div></div>
     </article>
 
     <article class="fiche">
       <div class="no">FICHE 03 · PFE</div>
       <h3>IDS-XAI</h3>
+      <p class="clair"><b>En clair</b>Le score de 0,972 baisse peu (−1,1 point) quand je retire une variable suspecte, mais s'effondre à 0,565 sur un autre jeu de données. Régler le modèle ne comble pas l'écart : le problème vient plutôt des données.</p>
       <dl>
         <dt>Question</dt><dd>Le score d'un détecteur d'intrusion vient-il du modèle ou du jeu de données ?</dd>
         <dt>Fait</dt><dd>XGBoost et FT-Transformer sur CIC-IDS2017 et UNSW-NB15, explications SHAP contre LIME, test de fuite.</dd>
         <dt>Résultat</dt><dd class="res">F1 0,972 → 0,961 sans le port<br>0,565 sur UNSW-NB15<br>stabilité SHAP 1,00 · LIME 0,56</dd>
         <dt>À faire</dt><dd class="bad">Découpage temporel pas encore testé. Notebook du test de fuite non publié.</dd>
       </dl>
-      <a class="go" href="https://github.com/nataname78/ids-xai-pfe">Voir le code</a>
+      <button class="more" type="button" aria-expanded="false" aria-controls="d3" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/ids-xai-pfe">Voir le code</a>
+      <div class="detail" id="d3"><div class="inner"><div class="dbody">
+        <div><h4>Ce que j'ai construit</h4><ul>
+          <li>Quatre modèles comparés classe par classe : Random Forest, XGBoost (réglé avec Optuna), réseau profond et FT-Transformer.</li>
+          <li>SHAP et LIME comparés selon trois critères : stabilité, fidélité, plausibilité.</li>
+          <li>Un test de fuite : retirer « port de destination » et tout réentraîner à l'identique.</li>
+          <li>Un test de généralisation sur un second jeu de données, UNSW-NB15.</li>
+        </ul></div>
+        <div><h4>SHAP contre LIME</h4>
+          <table class="tab"><tr><th>Critère</th><th>SHAP</th><th>LIME</th></tr>
+          <tr><td>Stabilité (Jaccard)</td><td class="n">1,00</td><td class="n">0,56</td></tr>
+          <tr><td>Fidélité (AOPC)</td><td class="n">0,119</td><td class="n">0,115</td></tr>
+          <tr><td>Plausibilité (variables liées à la cybersécurité)</td><td class="n">93,2 %</td><td class="n">88,1 %</td></tr></table>
+          <p class="hint">Sur UNSW-NB15 : précision 0,767, F1 macro 0,565. Trois réglages testés, de 0,558 à 0,565.</p>
+        </div>
+        <div><h4>Ce qui reste limité</h4><ul>
+          <li>Le découpage entre entraînement et test est aléatoire. Un découpage dans le temps, plus proche d'un vrai déploiement, reste à tester.</li>
+          <li>Je n'ai cherché qu'une seule fuite de données, et le notebook de ce test n'est pas publié.</li>
+        </ul></div>
+        <div><h4>Compétences</h4><div class="t"><span>Python</span><span>XGBoost</span><span>PyTorch</span><span>FT-Transformer</span><span>SHAP</span><span>LIME</span><span>Optuna</span><span>scikit-learn</span></div></div>
+      </div></div></div>
     </article>
 
     <article class="fiche">
-      <div class="no">FICHE 04</div>
+      <div class="no">FICHE 04<span class="soon">démo : bientôt</span></div>
       <h3>Food Security Early Warning Agent</h3>
+      <p class="clair"><b>En clair</b>Un agent qui répond aux questions d'un analyste sur le risque d'insécurité alimentaire d'une région, en s'appuyant sur des rapports et des données climatiques, avec des garde-fous contre les injections de prompt. Les chiffres d'évaluation ne sont pas encore publiés.</p>
       <dl>
         <dt>Question</dt><dd>Un agent tient-il face aux injections de prompt ?</dd>
-        <dt>Fait</dt><dd>Serveur MCP, garde-fous, tests d'injection, évaluation RAGAS, suivi des coûts et de la latence.</dd>
-        <dt>Résultat</dt><dd class="res">évalué avec RAGAS<br>tests d'injection automatisés</dd>
-        <dt>Limite</dt><dd class="bad">Le corpus est synthétique, et c'est écrit dans le dépôt.</dd>
+        <dt>Fait</dt><dd>Serveur MCP, garde-fous, tests d'injection, scripts d'évaluation RAGAS, de coût et de latence.</dd>
+        <dt>Résultat</dt><dd class="res">5 tests d'injection + 4 tests de garde-fous</dd>
+        <dt>Limite</dt><dd class="bad">Corpus synthétique, et résultats chiffrés d'évaluation non publiés.</dd>
       </dl>
-      <a class="go" href="https://github.com/nataname78/food-security-agent">Voir le code</a>
+      <button class="more" type="button" aria-expanded="false" aria-controls="d4" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/food-security-agent">Voir le code</a>
+      <div class="detail" id="d4"><div class="inner"><div class="dbody">
+        <div><h4>Ce que j'ai construit</h4><ul>
+          <li>Boucle d'agent : une étape d'analyse, une passe de critique, des garde-fous et un suivi des traces.</li>
+          <li>Serveur MCP maison à 3 outils, utilisable en local ou testable avec l'inspecteur MCP.</li>
+          <li>Recherche hybride BM25 et embeddings, fusionnés puis reclassés par un cross-encoder ; repli sur BM25 seul si les modèles ne se téléchargent pas.</li>
+          <li>Garde-fous : filtre sur l'entrée, barrière avant toute action, budget de jetons.</li>
+          <li>Raisonnement par exemples avec auto-cohérence (3 tirages). Modèles Mistral. Traces Langfuse en option.</li>
+        </ul></div>
+        <div><h4>Données et tests</h4><ul>
+          <li>8 rapports synthétiques écrits pour le projet (ni copiés de FEWS NET, ni de la FAO) et 12 paires question-réponse d'évaluation.</li>
+          <li>Les scripts d'évaluation RAGAS et de coût/latence existent, mais leurs résultats ne sont pas encore publiés dans le dépôt.</li>
+        </ul></div>
+        <div><h4>Ce qui reste limité</h4><ul>
+          <li>Un corpus synthétique ne teste ni la recherche ni l'évaluation sur de vrais rapports. Des rapports publics peuvent le remplacer.</li>
+          <li>Le premier lancement a besoin d'internet pour télécharger les modèles.</li>
+        </ul></div>
+        <div><h4>Compétences</h4><div class="t"><span>Python</span><span>agents LLM</span><span>MCP</span><span>RAG hybride</span><span>garde-fous</span><span>tests de sécurité</span><span>RAGAS</span><span>Langfuse</span></div></div>
+      </div></div></div>
     </article>
 
     <article class="fiche" style="grid-column:1/-1">
       <span class="stamp">Échec documenté</span>
       <div class="no">FICHE 05</div>
       <h3>UR5, prise par ventouse</h3>
+      <p class="clair"><b>En clair</b>Le bras n'arrive jamais assez près du carton : il s'arrête à 14, 68 ou 113 cm, au lieu des 2 cm nécessaires. Je sais où ça casse, pas encore pourquoi.</p>
       <dl>
         <dt>Question</dt><dd>Pourquoi un bras simulé ne saisit-il jamais le carton ?</dd>
         <dt>Fait</dt><dd>Simulation PyBullet de prise et dépose. Mesure de la distance entre l'effecteur et le carton en fin de descente, essai par essai.</dd>
         <dt>Résultat</dt><dd class="res">0 prise sur 8 essais<br>effecteur à 14, 68 ou 113 cm du carton, pour un seuil de contact de 2 cm</dd>
         <dt>Inconnu</dt><dd class="bad">La cause racine. Hypothèses notées dans le dépôt : zone de travail, posture de repos, limites articulaires, décalage du repère de l'effecteur.</dd>
       </dl>
-      <a class="go" href="https://github.com/nataname78/ur5-suction-pick-place">Voir le diagnostic</a>
+      <button class="more" type="button" aria-expanded="false" aria-controls="d5" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/ur5-suction-pick-place">Voir le diagnostic</a>
+      <div class="detail" id="d5"><div class="inner"><div class="dbody">
+        <div><h4>Où s'arrête l'effecteur, sur 8 essais terminés (cm)</h4>
+          <div class="dist" role="img" aria-label="Trois essais à 14 cm, un à 68 cm, quatre à 113 cm du carton ; seuil de contact à 2 cm">
+            <div class="th"><em>seuil : 2 cm</em></div>
+            <div class="d" style="--x:11.7%">3</div><div class="d" style="--x:56.7%">1</div><div class="d" style="--x:94.2%">4</div>
+            <span class="lab" style="--x:11.7%">14</span><span class="lab" style="--x:56.7%">68</span><span class="lab" style="--x:94.2%">113</span>
+          </div>
+        </div>
+        <div><h4>Pourquoi aucune prise n'est comptée</h4>
+          <p>La ventouse ne s'active que si un carton est à moins de 2 cm. Comme l'effecteur reste bien plus loin, la liaison de succion n'est jamais créée : 0 prise sur 8. Sur 12 lancements, 4 n'ont écrit aucun essai.</p>
+          <p class="hint">Soulèvement mesuré de −5,6 à 0,0 mm. Erreur de dépose de 25,5 à 30,1 cm.</p>
+        </div>
+        <div><h4>Ce que j'ai construit</h4><ul>
+          <li>Scène PyBullet avec bras UR5 et ventouse, enregistrement des essais et traçage des résultats.</li>
+          <li>Un tableau d'essais qui sépare ce qui est mesuré de ce qui est supposé.</li>
+        </ul></div>
+        <div><h4>Compétences</h4><div class="t"><span>Python</span><span>PyBullet</span><span>robotique</span><span>diagnostic expérimental</span></div></div>
+      </div></div></div>
     </article>
+
   </div>
 </div></section>
 
@@ -251,11 +424,31 @@ section{padding:56px 0}
   <div class="sh"><h2>Journal</h2><span class="hand">de l'analyse à l'IA évaluée</span></div>
   <p class="sub">Du plus récent au plus ancien.</p>
   <ol class="log">
-    <li><div class="d">2025</div><div><b>Projet de recherche IA, aivancity.</b> FutureGAN face à 14 modèles du benchmark OpenSTL sur MovingMNIST et KTH. Métriques harmonisées (MSE, SSIM), rapport et soutenance.</div><span class="hand">écart ×40</span></li>
-    <li><div class="d">sept. 2023 – mars 2024</div><div><b>Data analyst / data scientist, UIZ.CARE.</b> Codage médical CIM-10 automatisé : traitement de notes médicales et réseau récurrent TensorFlow/Keras.</div><span></span></li>
-    <li><div class="d">2023 – 2024</div><div><b>Missions data analyst.</b> Tableaux de bord Power BI en temps réel, scripts ETL, application de suivi de stock en VBA, Access et SQL.</div><span></span></li>
-    <li><div class="d">2023</div><div><b>Projet CREEP-AI, ESITC Paris.</b> Déformation différée du béton : KNN, régression logistique, SVC et arbres de décision comparés.</div><span></span></li>
-    <li><div class="d">2022</div><div><b>Data analyst, Custeed.</b> Avis clients de concessionnaires automobiles classés par thème, 5 axes prioritaires, tableaux de bord Power BI sur MongoDB.</div><span></span></li>
+    <li><div class="d">2025</div><div><b>Projet de recherche IA, aivancity.</b> FutureGAN face à 14 modèles du benchmark OpenSTL sur MovingMNIST et KTH. Métriques harmonisées (MSE, SSIM), rapport et soutenance.<br><button class="more mini" type="button" aria-expanded="false" aria-controls="j1" data-open="Replier" data-closed="Détail et compétences"><span>Détail et compétences</span><i>+</i></button>
+      <div class="detail" id="j1"><div class="inner"><div class="dbody">
+        <p>Évaluation de FutureGAN (réseau convolutif 3D entraîné en GAN, avec une perte WGAN-GP) face à 14 modèles de référence du benchmark OpenSTL, dont PredRNN++, SimVP et ConvLSTM, sur MovingMNIST et KTH. Harmonisation des métriques (MSE, SSIM), mise en évidence d'un écart d'un facteur 40, recommandations d'amélioration, rapport final et soutenance.</p>
+        <div class="t"><span>PyTorch</span><span>GAN</span><span>CNN 3D</span><span>benchmarking</span><span>rédaction scientifique</span></div>
+      </div></div></div></div><span class="hand">écart ×40</span></li>
+    <li><div class="d">sept. 2023 – mars 2024</div><div><b>Data analyst / data scientist, UIZ.CARE.</b> Codage médical CIM-10 automatisé : traitement de notes médicales et réseau récurrent TensorFlow/Keras.<br><button class="more mini" type="button" aria-expanded="false" aria-controls="j2" data-open="Replier" data-closed="Détail et compétences"><span>Détail et compétences</span><i>+</i></button>
+      <div class="detail" id="j2"><div class="inner"><div class="dbody">
+        <p>Nettoyage, normalisation et vectorisation de notes médicales (traitement du langage), puis réseau de neurones récurrent pour attribuer automatiquement les codes de diagnostic CIM-10, validé sur un jeu de test avant mise en production.</p>
+        <div class="t"><span>TensorFlow/Keras</span><span>RNN</span><span>NLTK</span><span>scikit-learn</span></div>
+      </div></div></div></div><span></span></li>
+    <li><div class="d">2023 – 2024</div><div><b>Missions data analyst.</b> Tableaux de bord Power BI en temps réel, scripts ETL, application de suivi de stock en VBA, Access et SQL.<br><button class="more mini" type="button" aria-expanded="false" aria-controls="j3" data-open="Replier" data-closed="Détail et compétences"><span>Détail et compétences</span><i>+</i></button>
+      <div class="detail" id="j3"><div class="inner"><div class="dbody">
+        <p>Tableaux de bord Power BI en temps réel pour des indicateurs commerciaux et opérationnels, scripts d'automatisation qui centralisent et nettoient les données de plusieurs systèmes internes, et une application de suivi de stock en VBA, Access et SQL.</p>
+        <div class="t"><span>Power BI</span><span>SQL</span><span>Python (Pandas)</span><span>ETL</span><span>VBA</span><span>Access</span><span>Git</span></div>
+      </div></div></div></div><span></span></li>
+    <li><div class="d">2023</div><div><b>Projet CREEP-AI, ESITC Paris.</b> Déformation différée du béton : KNN, régression logistique, SVC et arbres de décision comparés.<br><button class="more mini" type="button" aria-expanded="false" aria-controls="j4" data-open="Replier" data-closed="Détail et compétences"><span>Détail et compétences</span><i>+</i></button>
+      <div class="detail" id="j4"><div class="inner"><div class="dbody">
+        <p>Analyse prédictive de la déformation différée de structures en béton : quatre approches de classification comparées pour retenir la plus adaptée.</p>
+        <div class="t"><span>scikit-learn</span><span>Pandas</span><span>Matplotlib</span><span>Seaborn</span></div>
+      </div></div></div></div><span></span></li>
+    <li><div class="d">2022</div><div><b>Data analyst, Custeed.</b> Avis clients de concessionnaires automobiles classés par thème, 5 axes prioritaires, tableaux de bord Power BI sur MongoDB.<br><button class="more mini" type="button" aria-expanded="false" aria-controls="j5" data-open="Replier" data-closed="Détail et compétences"><span>Détail et compétences</span><i>+</i></button>
+      <div class="detail" id="j5"><div class="inner"><div class="dbody">
+        <p>Classification et analyse thématique d'avis clients de concessionnaires automobiles, qui font ressortir 5 axes prioritaires d'amélioration, et tableaux de bord Power BI connectés à MongoDB pour suivre la perception client.</p>
+        <div class="t"><span>Python</span><span>Power BI</span><span>MongoDB</span></div>
+      </div></div></div></div><span></span></li>
     <li><div class="d">2021 – 2026</div><div><b>Master IA et science des données, aivancity.</b> Diplôme de niveau 7 (RNCP37763), mémoire et PFE IDS-XAI.</div><span></span></li>
   </ol>
 </div></section>
@@ -327,6 +520,23 @@ section{padding:56px 0}
   show(0);
   fill.style.width='0%';
   requestAnimationFrame(function(){requestAnimationFrame(function(){fill.style.width=(states[0].v*100)+'%';});});
+})();
+</script>
+<script>
+(function(){
+  var btns=[].slice.call(document.querySelectorAll('.more'));
+  btns.forEach(function(b){
+    var d=document.getElementById(b.getAttribute('aria-controls'));
+    if(!d) return;
+    d.inert=true;
+    b.addEventListener('click',function(){
+      var open=b.getAttribute('aria-expanded')==='true';
+      b.setAttribute('aria-expanded',open?'false':'true');
+      d.classList.toggle('open',!open);
+      d.inert=open;
+      b.querySelector('span').textContent=open?b.getAttribute('data-closed'):b.getAttribute('data-open');
+    });
+  });
 })();
 </script>
 </body>
