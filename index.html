@@ -104,6 +104,8 @@ section{padding:56px 0}
 .more.mini{padding:4px 10px;font-size:13px;margin-top:8px;box-shadow:2px 2px 0 var(--ink)}
 .fiche .go{margin-left:18px}
 .soon{font:500 11px var(--mono);color:var(--pen);border:1.5px dashed var(--pen);border-radius:999px;padding:1px 9px;margin-left:10px;letter-spacing:0;text-transform:none}
+.demo{font:600 11px var(--mono);color:var(--ink);background:var(--card);border:1.5px solid var(--ink);border-radius:999px;padding:1px 10px;margin-left:10px;letter-spacing:0;text-transform:none;text-decoration:none;box-shadow:2px 2px 0 var(--ink);transition:transform .12s,box-shadow .12s}
+.demo:hover{transform:translate(1px,1px);box-shadow:1px 1px 0 var(--ink)}
 .detail{display:grid;grid-template-rows:0fr;transition:grid-template-rows .5s cubic-bezier(.2,.8,.2,1)}
 .detail.open{grid-template-rows:1fr}
 .detail>.inner{overflow:hidden;min-height:0}
@@ -248,7 +250,7 @@ section{padding:56px 0}
   <div class="fiches">
 
     <article id="f1" class="fiche">
-      <div class="no">FICHE 01<span class="soon">démo : bientôt</span></div>
+      <div class="no">FICHE 01<a class="demo" href="https://nathan-docsense.streamlit.app/" target="_blank" rel="noopener">tester la démo ↗</a></div>
       <h3>DocSense</h3>
       <p class="clair"><b>En clair</b>L'agent retrouve bien plus souvent le bon passage d'un PDF (0,58 → 0,83) et préfère refuser de répondre plutôt qu'inventer. Un point reste à corriger : la fidélité de ses réponses a baissé (0,57 → 0,51).</p>
       <dl>
@@ -352,7 +354,7 @@ section{padding:56px 0}
     </article>
 
     <article id="f4" class="fiche">
-      <div class="no">FICHE 04<span class="soon">démo : bientôt</span></div>
+      <div class="no">FICHE 04<a class="demo" href="https://nathan-food-security-agent.streamlit.app/" target="_blank" rel="noopener">tester la démo ↗</a></div>
       <h3>Food Security Early Warning Agent</h3>
       <p class="clair"><b>En clair</b>Un agent qui répond aux questions d'un analyste sur le risque d'insécurité alimentaire d'une région, en s'appuyant sur des rapports et des données climatiques, avec des garde-fous contre les injections de prompt. Les chiffres d'évaluation ne sont pas encore publiés.</p>
       <dl>
