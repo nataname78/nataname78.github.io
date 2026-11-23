@@ -158,6 +158,14 @@ section{padding:56px 0}
 @media (max-width:520px){.mrow,.cirow,.scale{grid-template-columns:84px 1fr 84px;gap:6px}.fiche .go{margin-left:0;display:block;margin-top:12px}}
 @media (prefers-reduced-motion:reduce){.detail,.dbody>*,.mrow .b,.cirow .s,.cirow .p,.dist .d,.more i{transition:none}}
 
+.raw li{grid-template-columns:150px 1fr}
+.raw .ref{width:132px;display:flex;flex-direction:column;text-decoration:none;color:inherit;border-left:2px solid #ff8a7c;padding-left:10px}
+.raw .ref b{line-height:1.4}
+.raw .ref i{font:400 12px var(--mono);font-style:normal;color:#c4d3e2;border-bottom:1px dashed #8fa5ba;align-self:flex-start;transition:color .15s}
+.raw .ref:hover i{color:#fff;border-bottom-style:solid}
+.fiche.flash{animation:flash 1.6s}
+@keyframes flash{0%,100%{box-shadow:none}30%{box-shadow:0 0 0 6px var(--hl)}}
+@media (max-width:520px){.raw li{grid-template-columns:1fr;gap:6px}.raw .ref{width:auto}}
 /* Ce qui ne marche pas encore */
 .raw{background:var(--ink);color:#e8f0f7;border-radius:10px;padding:30px 28px;position:relative}
 .raw h2{font:800 clamp(26px,4vw,38px)/1.05 var(--display);margin:0 0 6px;letter-spacing:-.02em}
@@ -239,7 +247,7 @@ section{padding:56px 0}
 
   <div class="fiches">
 
-    <article class="fiche">
+    <article id="f1" class="fiche">
       <div class="no">FICHE 01<span class="soon">démo : bientôt</span></div>
       <h3>DocSense</h3>
       <p class="clair"><b>En clair</b>L'agent retrouve bien plus souvent le bon passage d'un PDF (0,58 → 0,83) et préfère refuser de répondre plutôt qu'inventer. Un point reste à corriger : la fidélité de ses réponses a baissé (0,57 → 0,51).</p>
@@ -275,7 +283,7 @@ section{padding:56px 0}
       </div></div></div>
     </article>
 
-    <article class="fiche">
+    <article id="f2" class="fiche">
       <div class="no">FICHE 02</div>
       <h3>Name Recall, Not Prediction</h3>
       <p class="clair"><b>En clair</b>Pour les entreprises les plus anciennes, donner son nom à l'entreprise améliore la prédiction du modèle : il semble la reconnaître. Pour les récentes, ça ne change rien. Sans le nom, les modèles devinent à peine mieux que le hasard.</p>
@@ -310,7 +318,7 @@ section{padding:56px 0}
       </div></div></div>
     </article>
 
-    <article class="fiche">
+    <article id="f3" class="fiche">
       <div class="no">FICHE 03 · PFE</div>
       <h3>IDS-XAI</h3>
       <p class="clair"><b>En clair</b>Le score de 0,972 baisse peu (−1,1 point) quand je retire une variable suspecte, mais s'effondre à 0,565 sur un autre jeu de données. Régler le modèle ne comble pas l'écart : le problème vient plutôt des données.</p>
@@ -343,7 +351,7 @@ section{padding:56px 0}
       </div></div></div>
     </article>
 
-    <article class="fiche">
+    <article id="f4" class="fiche">
       <div class="no">FICHE 04<span class="soon">démo : bientôt</span></div>
       <h3>Food Security Early Warning Agent</h3>
       <p class="clair"><b>En clair</b>Un agent qui répond aux questions d'un analyste sur le risque d'insécurité alimentaire d'une région, en s'appuyant sur des rapports et des données climatiques, avec des garde-fous contre les injections de prompt. Les chiffres d'évaluation ne sont pas encore publiés.</p>
@@ -374,7 +382,7 @@ section{padding:56px 0}
       </div></div></div>
     </article>
 
-    <article class="fiche" style="grid-column:1/-1">
+    <article id="f5" class="fiche" style="grid-column:1/-1">
       <span class="stamp">Échec documenté</span>
       <div class="no">FICHE 05</div>
       <h3>UR5, prise par ventouse</h3>
@@ -413,9 +421,12 @@ section{padding:56px 0}
   <div class="raw">
     <div class="sh"><h2>Ce qui ne marche pas encore</h2><span class="hand">je préfère le dire avant vous</span></div>
     <ul>
-      <li><b>01</b><p>La prise robotique échoue. Je sais où (l'effecteur n'atteint pas sa cible), je ne sais pas encore pourquoi.</p></li>
-      <li><b>02</b><p>Mes scores de détection d'intrusion reposent sur un découpage aléatoire. Un découpage dans le temps, plus proche d'un vrai déploiement, reste à tester.</p></li>
-      <li><b>03</b><p>Je n'ai testé qu'une seule fuite de données. Il peut y en avoir d'autres, et les erreurs d'étiquettes connues de CIC-IDS2017 jouent aussi.</p></li>
+      <li><a class="ref" href="#f1"><b>Fiche 01</b><i>DocSense</i></a><p>Ma fidélité baisse (0,57 → 0,51) sur 12 questions seulement, et le même modèle génère puis juge les réponses. Un juge externe et plus de questions restent à faire.</p></li>
+      <li><a class="ref" href="#f2"><b>Fiche 02</b><i>Name Recall</i></a><p>Mes modèles ont de 0,5 à 4 milliards de paramètres. Dire ce qui se passe à plus grande échelle serait une projection, pas une mesure.</p></li>
+      <li><a class="ref" href="#f3"><b>Fiche 03</b><i>IDS-XAI</i></a><p>Mes scores de détection d'intrusion reposent sur un découpage aléatoire. Un découpage dans le temps, plus proche d'un vrai déploiement, reste à tester.</p></li>
+      <li><a class="ref" href="#f3"><b>Fiche 03</b><i>IDS-XAI</i></a><p>Je n'ai testé qu'une seule fuite de données. Il peut y en avoir d'autres, et les erreurs d'étiquettes connues de CIC-IDS2017 jouent aussi.</p></li>
+      <li><a class="ref" href="#f4"><b>Fiche 04</b><i>Food Security</i></a><p>Les scripts d'évaluation existent, mais leurs résultats ne sont pas publiés, et le corpus est synthétique.</p></li>
+      <li><a class="ref" href="#f5"><b>Fiche 05</b><i>UR5</i></a><p>La prise robotique échoue. Je sais où (l'effecteur n'atteint pas sa cible), je ne sais pas encore pourquoi.</p></li>
     </ul>
   </div>
 </div></section>
@@ -535,6 +546,16 @@ section{padding:56px 0}
       d.classList.toggle('open',!open);
       d.inert=open;
       b.querySelector('span').textContent=open?b.getAttribute('data-closed'):b.getAttribute('data-open');
+    });
+  });
+  [].slice.call(document.querySelectorAll('.raw .ref')).forEach(function(a){
+    a.addEventListener('click',function(e){
+      var f=document.querySelector(a.getAttribute('href'));
+      if(!f) return; e.preventDefault();
+      var b=f.querySelector('.more');
+      if(b&&b.getAttribute('aria-expanded')!=='true') b.click();
+      f.scrollIntoView({behavior:'smooth',block:'start'});
+      f.classList.remove('flash'); void f.offsetWidth; f.classList.add('flash');
     });
   });
 })();
