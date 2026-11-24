@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nathan Makila, carnet de labo</title>
-<meta name="description" content="Portfolio de Nathan Makila, data scientist et ingénieur IA : six projets (RAG, agents, détection d'intrusion explicable) avec leurs résultats chiffrés et leurs limites.">
+<meta name="description" content="Portfolio de Nathan Makila, data scientist et ingénieur IA : sept projets (RAG, agents, détection d'intrusion explicable) avec leurs résultats chiffrés et leurs limites.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nathan Makila">
 <meta property="og:title" content="Nathan Makila, carnet de labo">
-<meta property="og:description" content="Six projets IA et data avec leurs résultats chiffrés, et ce qui ne marche pas encore.">
+<meta property="og:description" content="Sept projets IA et data avec leurs résultats chiffrés, et ce qui ne marche pas encore.">
 <meta property="og:url" content="https://nataname78.github.io/">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary">
@@ -264,7 +264,7 @@ section{padding:56px 0}
 
 <main>
 <section id="fiches"><div class="wrap">
-  <div class="sh"><h2>Les fiches</h2><span class="hand">six projets, avec leurs défauts</span></div>
+  <div class="sh"><h2>Les fiches</h2><span class="hand">sept projets, avec leurs défauts</span></div>
   <p class="sub">Chaque fiche pose une question, dit ce que j'ai fait, donne le résultat, et note ce qui reste faux ou inconnu. Le code est public.</p>
 
   <div class="fiches">
@@ -445,8 +445,49 @@ section{padding:56px 0}
     </article>
 
     <article id="f6" class="fiche" style="grid-column:1/-1">
+      <div class="no">FICHE 06 · LAB AI FOR AGRICULTURE</div>
+      <h3>Anomalies agricoles vues du ciel</h3>
+      <p class="clair"><b>Le projet</b>Un modèle qui repère des anomalies de culture (sécheresse, carence, mauvaises herbes, dégâts d'orage…) sur des images aériennes de champs, en lumière visible et en proche infrarouge. Les prédictions ont été écrites avant les expériences, puis comparées aux mesures. Lab du cours AI for Agriculture &amp; Environment (aivancity).</p>
+      <dl>
+        <dt>Question</dt><dd>Qu'est-ce qui améliore vraiment la segmentation sur un jeu très déséquilibré, et quelle part du score vient d'une évaluation trop favorable ?</dd>
+        <dt>Fait</dt><dd>Segmentation en PyTorch (U-Net et DeepLabv3+), 8 401 tuiles découpées par champ, grille de 8 configurations sur 3 graines, métriques codées à la main.</dd>
+        <dt>Ce que le lab a montré</dt><dd>Sur cinq prédictions écrites à l'avance, deux sont réfutées : l'indice NDVI n'aide pas (il se déduit déjà des bandes), et les pertes Dice et Tversky ne battent pas la cross-entropy pondérée. Découper par tuile au lieu de par champ gonfle le score de 67 %. Le modèle est trop confiant : filtrer sur sa confiance fait baisser la précision.</dd>
+        <dt>Résultat</dt><dd class="res">découpage par tuile 0,1038 contre 0,0620 par champ<br>DeepLabv3+ : +0,0266 de mIoU sur U-Net<br>erreur de calibration (ECE) 0,16</dd>
+        <dt>Livrables</dt><dd>Rapport de 8 pages, carnet, chiffres bruts.</dd>
+      </dl>
+      <button class="more" type="button" aria-expanded="false" aria-controls="d6" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/agriculture-vision-segmentation">Voir le code</a>
+      <div class="detail" id="d6"><div class="inner"><div class="dbody">
+        <div><h4>Ce qui a été construit</h4><ul>
+          <li>Un pipeline de données multi-canaux : RGB, proche infrarouge et masques de validité, avec un découpage par champ sans champ commun entre entraînement, validation et test.</li>
+          <li>IoU, Dice et mIoU codés à la main. Deux références : un seuil sur le NDVI et une forêt aléatoire.</li>
+          <li>Huit configurations (C1 à C8) où un seul facteur change à la fois : bande NIR, indice NDVI, fonction de perte (pondérée, Dice, Focal, Tversky), architecture.</li>
+          <li>Huit cas d'erreur types lus d'un point de vue agronomique, robustesse à des perturbations (flou, bruit, luminosité, suppression du NIR), calibration, et seuil de décision à coûts asymétriques (0,65).</li>
+        </ul></div>
+        <div><h4>mIoU de test selon la configuration (moyenne de 3 graines)</h4>
+          <div class="mrow"><span>U-Net RGB</span><div class="tr"><div class="b c" style="--w:58%"></div></div><span class="vv">0,0517</span></div>
+          <div class="mrow"><span>+ NIR</span><div class="tr"><div class="b c" style="--w:70%"></div></div><span class="vv">0,0620</span></div>
+          <div class="mrow"><span>+ NDVI</span><div class="tr"><div class="b c" style="--w:59%"></div></div><span class="vv">0,0525</span></div>
+          <div class="mrow"><span>Perte Focal</span><div class="tr"><div class="b c" style="--w:84%"></div></div><span class="vv">0,0748</span></div>
+          <div class="mrow"><span>DeepLabv3+</span><div class="tr"><div class="b c" style="--w:100%"></div></div><span class="vv">0,0886</span></div>
+          <p class="hint">Un seul facteur change à chaque ligne : le NIR par rapport au RVB, puis le NDVI, la perte Focal et DeepLabv3+ par rapport à la configuration NIR.</p>
+        </div>
+        <div><h4>Découpage par champ contre par tuile</h4>
+          <div class="mrow"><span>Par champ</span><div class="tr"><div class="b c" style="--w:60%"></div></div><span class="vv">0,0620</span></div>
+          <div class="mrow"><span>Par tuile</span><div class="tr"><div class="b c bad" style="--w:100%"></div></div><span class="vv">0,1038</span></div>
+          <p class="hint">Des morceaux d'un même champ se retrouvent à la fois en entraînement et en test : +67 % d'optimisme.</p>
+        </div>
+        <div><h4>Cadre de l'étude</h4><ul>
+          <li>Chaque cellule est entraînée 8 époques sur 600 tuiles : les valeurs absolues sont faibles, seules les comparaisons comptent.</li>
+          <li>Les classes rares (tempête, semis manqué, eau, voie d'eau, bord de champ, plantes doubles) ont un IoU proche de zéro.</li>
+          <li>Un seul jeu de données (Agriculture-Vision, version réduite) : pas de garantie pour une autre région ou saison.</li>
+        </ul></div>
+        <div><h4>Compétences</h4><div class="t"><span>Python</span><span>PyTorch</span><span>segmentation d'images</span><span>U-Net</span><span>DeepLabv3+</span><span>évaluation sans fuite</span><span>calibration</span><span>analyse d'erreurs</span></div></div>
+      </div></div></div>
+    </article>
+
+    <article id="f7" class="fiche" style="grid-column:1/-1">
       <span class="stamp">Échec documenté</span>
-      <div class="no">FICHE 06</div>
+      <div class="no">FICHE 07</div>
       <h3>UR5, prise par ventouse</h3>
       <p class="clair"><b>Le projet</b>Un bras robot industriel (UR5), simulé sur ordinateur, censé saisir un carton avec une ventouse puis le déposer ailleurs. Dans la simulation, il ne l'a encore jamais saisi.</p>
       <dl>
@@ -456,8 +497,8 @@ section{padding:56px 0}
         <dt>Résultat</dt><dd class="res">0 prise sur 8 essais<br>effecteur à 14, 68 ou 113 cm du carton, pour un seuil de contact de 2 cm</dd>
         <dt>Inconnu</dt><dd class="bad">La cause racine. Hypothèses notées dans le dépôt : zone de travail, posture de repos, limites articulaires, décalage du repère de l'effecteur.</dd>
       </dl>
-      <button class="more" type="button" aria-expanded="false" aria-controls="d6" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/ur5-suction-pick-place">Voir le diagnostic</a>
-      <div class="detail" id="d6"><div class="inner"><div class="dbody">
+      <button class="more" type="button" aria-expanded="false" aria-controls="d7" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/ur5-suction-pick-place">Voir le diagnostic</a>
+      <div class="detail" id="d7"><div class="inner"><div class="dbody">
         <div><h4>Où s'arrête l'effecteur, sur 8 essais terminés (cm)</h4>
           <div class="dist" role="img" aria-label="Trois essais à 14 cm, un à 68 cm, quatre à 113 cm du carton ; seuil de contact à 2 cm">
             <div class="th"><em>seuil : 2 cm</em></div>
@@ -484,7 +525,7 @@ section{padding:56px 0}
   <div class="raw">
     <div class="sh"><h2>Ce qui ne marche pas encore</h2><span class="hand">je préfère le dire avant vous</span></div>
     <ul>
-      <li><a class="ref" href="#f6"><b>Fiche 06</b><i>UR5</i></a><p>La prise robotique échoue. Je sais où (l'effecteur n'atteint pas sa cible), je ne sais pas encore pourquoi.</p></li>
+      <li><a class="ref" href="#f7"><b>Fiche 07</b><i>UR5</i></a><p>La prise robotique échoue. Je sais où (l'effecteur n'atteint pas sa cible), je ne sais pas encore pourquoi.</p></li>
       <li><a class="ref" href="#f3"><b>Fiche 03</b><i>IDS-XAI</i></a><p>Mes scores de détection d'intrusion reposent sur un découpage aléatoire. Un découpage dans le temps, plus proche d'un vrai déploiement, reste à tester.</p></li>
       <li><a class="ref" href="#f3"><b>Fiche 03</b><i>IDS-XAI</i></a><p>Je n'ai testé qu'une seule fuite de données. Il peut y en avoir d'autres, et les erreurs d'étiquettes connues de CIC-IDS2017 jouent aussi.</p></li>
     </ul>
