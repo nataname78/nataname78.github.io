@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Nathan Makila, carnet de labo</title>
-<meta name="description" content="Portfolio de Nathan Makila, data scientist et ingénieur IA : cinq projets (RAG, agents, détection d'intrusion explicable) avec leurs résultats chiffrés et leurs limites.">
+<meta name="description" content="Portfolio de Nathan Makila, data scientist et ingénieur IA : six projets (RAG, agents, détection d'intrusion explicable) avec leurs résultats chiffrés et leurs limites.">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Nathan Makila">
 <meta property="og:title" content="Nathan Makila, carnet de labo">
-<meta property="og:description" content="Cinq projets IA et data avec leurs résultats chiffrés, et ce qui ne marche pas encore.">
+<meta property="og:description" content="Six projets IA et data avec leurs résultats chiffrés, et ce qui ne marche pas encore.">
 <meta property="og:url" content="https://nataname78.github.io/">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary">
@@ -264,7 +264,7 @@ section{padding:56px 0}
 
 <main>
 <section id="fiches"><div class="wrap">
-  <div class="sh"><h2>Les fiches</h2><span class="hand">cinq projets, avec leurs défauts</span></div>
+  <div class="sh"><h2>Les fiches</h2><span class="hand">six projets, avec leurs défauts</span></div>
   <p class="sub">Chaque fiche pose une question, dit ce que j'ai fait, donne le résultat, et note ce qui reste faux ou inconnu. Le code est public.</p>
 
   <div class="fiches">
@@ -408,8 +408,45 @@ section{padding:56px 0}
     </article>
 
     <article id="f5" class="fiche" style="grid-column:1/-1">
+      <div class="no">FICHE 05 · PROJET D'ÉQUIPE</div>
+      <h3>Calibration d'un jumeau 5G</h3>
+      <p class="clair"><b>Le projet</b>Un « jumeau » numérique prévoit si la qualité d'une vidéo en 1080p sur un réseau 5G va chuter, et donne une probabilité. Nous avons vérifié si cette probabilité veut dire quelque chose : une alerte annoncée à 80 % se produit-elle vraiment huit fois sur dix ? Projet à six pour le cours AI for IoT (aivancity), rendu sous forme d'article au format IEEE, avec une maquette jouable.</p>
+      <dl>
+        <dt>Question</dt><dd>La confiance annoncée par un modèle de prévision réseau est-elle fiable, et le reste-t-elle quand les conditions changent ?</dd>
+        <dt>Fait</dt><dd>Jeu public 5G-QoERA rejoué dans l'ordre du temps, découpé en trois parties chronologiques. Modèles comparés : régression logistique, forêt aléatoire, boosting, GRU, LSTM, Transformer. Recalibration, intervalles conformes, changements de site et de période, couche d'explication par LLM.</dd>
+        <dt>Ce que nous avons trouvé</dt><dd>Un bon score ne garantit pas une bonne calibration. L'erreur de calibration brute est divisée par plus de dix entre la régression logistique et un GRU, et la recalibration isotonique l'efface presque sans toucher à la capacité du modèle de séparer les cas. En revanche, elle réduit de moitié les alertes anticipées, et quand on change de site la calibration se dégrade environ dix fois plus vite que la précision.</dd>
+        <dt>Résultat</dt><dd class="res">erreur de calibration 0,1085 → 0,0087<br>boosting recalibré : 0,0588 → 0,0038<br>maquette jouable fondée sur le vrai modèle</dd>
+        <dt>Livrables</dt><dd>Article de 10 pages, notebooks reproductibles, maquette. <a href="https://github.com/nataname78/ai4T/blob/main/main.pdf" target="_blank" rel="noopener">Lire l'article ↗</a></dd>
+      </dl>
+      <button class="more" type="button" aria-expanded="false" aria-controls="d5" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/ai4T">Voir le code</a>
+      <div class="detail" id="d5"><div class="inner"><div class="dbody">
+        <div><h4>Ce qui a été construit</h4><ul>
+          <li>Un rejeu chronologique du jeu de données, avec trois découpages dans le temps pour que la recalibration ne soit jamais ajustée sur les données d'entraînement ou de test.</li>
+          <li>Des modèles de référence et des réseaux récurrents (GRU, LSTM, BiLSTM) et un Transformer, comparés avec les mêmes découpages. Recalibration par Platt et par régression isotonique, intervalles de prédiction conformes.</li>
+          <li>Deux études de changement de conditions : d'un site à un autre, et sur dix jours d'un même site.</li>
+          <li>Une couche d'explication par LLM, évaluée sur 20 cas jugés à la main, puis refaite avec des outils déterministes qui calculent les chiffres au lieu de les faire générer.</li>
+          <li>Une maquette jouable : une ville avec des taxis et des antennes 5G, dont la chaîne de prédiction (GRU, sigmoïde, isotonique) est le vrai modèle, porté en JavaScript et vérifié contre PyTorch (écart maximal d'environ 1e-5).</li>
+        </ul></div>
+        <div><h4>Erreur de calibration brute (ECE, plus bas = mieux)</h4>
+          <div class="mrow"><span>Rég. logistique</span><div class="tr"><div class="b c" style="--w:100%"></div></div><span class="vv">0,1085</span></div>
+          <div class="mrow"><span>Boosting</span><div class="tr"><div class="b c" style="--w:54%"></div></div><span class="vv">0,0588</span></div>
+          <div class="mrow"><span>GRU, fenêtre 10</span><div class="tr"><div class="b c" style="--w:29%"></div></div><span class="vv">0,0313</span></div>
+          <div class="mrow"><span>GRU, fenêtre 20</span><div class="tr"><div class="b c" style="--w:8%"></div></div><span class="vv">0,0087</span></div>
+          <div class="mrow"><span>Recalibré iso.</span><div class="tr"><div class="b a" style="--w:54%"></div><div class="b c" style="--w:4%"></div></div><span class="vv">0,0588 → 0,0038</span></div>
+          <p class="hint">L'ECE mesure l'écart moyen entre la confiance annoncée et la fréquence réelle. Dans la dernière ligne, gris : avant recalibration, foncé : après.</p>
+        </div>
+        <div><h4>Cadre de l'étude</h4><ul>
+          <li>Le score de qualité du jeu de données est calculé à partir des conditions réseau, pas collecté auprès de spectateurs.</li>
+          <li>Une station de base pour les études sur un site, quatre pour le changement de site, dix jours pour l'étude dans le temps.</li>
+          <li>Résultats issus d'un seul entraînement par configuration ; deux configurations à moins d'un point de F1 sont traitées comme équivalentes.</li>
+        </ul></div>
+        <div><h4>Compétences</h4><div class="t"><span>Python</span><span>PyTorch</span><span>séries temporelles</span><span>calibration</span><span>prédiction conforme</span><span>évaluation de LLM</span><span>LaTeX</span><span>travail en équipe</span></div></div>
+      </div></div></div>
+    </article>
+
+    <article id="f6" class="fiche" style="grid-column:1/-1">
       <span class="stamp">Échec documenté</span>
-      <div class="no">FICHE 05</div>
+      <div class="no">FICHE 06</div>
       <h3>UR5, prise par ventouse</h3>
       <p class="clair"><b>Le projet</b>Un bras robot industriel (UR5), simulé sur ordinateur, censé saisir un carton avec une ventouse puis le déposer ailleurs. Dans la simulation, il ne l'a encore jamais saisi.</p>
       <dl>
@@ -419,8 +456,8 @@ section{padding:56px 0}
         <dt>Résultat</dt><dd class="res">0 prise sur 8 essais<br>effecteur à 14, 68 ou 113 cm du carton, pour un seuil de contact de 2 cm</dd>
         <dt>Inconnu</dt><dd class="bad">La cause racine. Hypothèses notées dans le dépôt : zone de travail, posture de repos, limites articulaires, décalage du repère de l'effecteur.</dd>
       </dl>
-      <button class="more" type="button" aria-expanded="false" aria-controls="d5" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/ur5-suction-pick-place">Voir le diagnostic</a>
-      <div class="detail" id="d5"><div class="inner"><div class="dbody">
+      <button class="more" type="button" aria-expanded="false" aria-controls="d6" data-open="Replier" data-closed="Voir le détail"><span>Voir le détail</span><i>+</i></button><a class="go" href="https://github.com/nataname78/ur5-suction-pick-place">Voir le diagnostic</a>
+      <div class="detail" id="d6"><div class="inner"><div class="dbody">
         <div><h4>Où s'arrête l'effecteur, sur 8 essais terminés (cm)</h4>
           <div class="dist" role="img" aria-label="Trois essais à 14 cm, un à 68 cm, quatre à 113 cm du carton ; seuil de contact à 2 cm">
             <div class="th"><em>seuil : 2 cm</em></div>
@@ -447,7 +484,7 @@ section{padding:56px 0}
   <div class="raw">
     <div class="sh"><h2>Ce qui ne marche pas encore</h2><span class="hand">je préfère le dire avant vous</span></div>
     <ul>
-      <li><a class="ref" href="#f5"><b>Fiche 05</b><i>UR5</i></a><p>La prise robotique échoue. Je sais où (l'effecteur n'atteint pas sa cible), je ne sais pas encore pourquoi.</p></li>
+      <li><a class="ref" href="#f6"><b>Fiche 06</b><i>UR5</i></a><p>La prise robotique échoue. Je sais où (l'effecteur n'atteint pas sa cible), je ne sais pas encore pourquoi.</p></li>
       <li><a class="ref" href="#f3"><b>Fiche 03</b><i>IDS-XAI</i></a><p>Mes scores de détection d'intrusion reposent sur un découpage aléatoire. Un découpage dans le temps, plus proche d'un vrai déploiement, reste à tester.</p></li>
       <li><a class="ref" href="#f3"><b>Fiche 03</b><i>IDS-XAI</i></a><p>Je n'ai testé qu'une seule fuite de données. Il peut y en avoir d'autres, et les erreurs d'étiquettes connues de CIC-IDS2017 jouent aussi.</p></li>
     </ul>
