@@ -445,12 +445,12 @@ section{padding:56px 0}
     </article>
 
     <article id="f6" class="fiche" style="grid-column:1/-1">
-      <div class="no">FICHE 06 · LAB AI FOR AGRICULTURE</div>
+      <div class="no">FICHE 06 · LAB EN BINÔME · AI FOR AGRICULTURE</div>
       <h3>Anomalies agricoles vues du ciel</h3>
       <p class="clair"><b>Le projet</b>Un modèle qui repère des anomalies de culture (sécheresse, carence, mauvaises herbes, dégâts d'orage…) sur des images aériennes de champs, en lumière visible et en proche infrarouge. Les prédictions ont été écrites avant les expériences, puis comparées aux mesures. Lab du cours AI for Agriculture &amp; Environment (aivancity).</p>
       <dl>
         <dt>Question</dt><dd>Qu'est-ce qui améliore vraiment la segmentation sur un jeu très déséquilibré, et quelle part du score vient d'une évaluation trop favorable ?</dd>
-        <dt>Fait</dt><dd>Segmentation en PyTorch (U-Net et DeepLabv3+), 8 401 tuiles découpées par champ, grille de 8 configurations sur 3 graines, métriques codées à la main.</dd>
+        <dt>Fait</dt><dd>Lab réalisé en binôme. Segmentation en PyTorch (U-Net et DeepLabv3+), 8 401 tuiles découpées par champ, grille de 8 configurations sur 3 graines, métriques codées à la main.</dd>
         <dt>Ce que le lab a montré</dt><dd>Sur cinq prédictions écrites à l'avance, deux sont réfutées : l'indice NDVI n'aide pas (il se déduit déjà des bandes), et les pertes Dice et Tversky ne battent pas la cross-entropy pondérée. Découper par tuile au lieu de par champ gonfle le score de 67 %. Le modèle est trop confiant : filtrer sur sa confiance fait baisser la précision.</dd>
         <dt>Résultat</dt><dd class="res">découpage par tuile 0,1038 contre 0,0620 par champ<br>DeepLabv3+ : +0,0266 de mIoU sur U-Net<br>erreur de calibration (ECE) 0,16</dd>
         <dt>Livrables</dt><dd>Rapport de 8 pages, carnet, chiffres bruts.</dd>
@@ -481,7 +481,7 @@ section{padding:56px 0}
           <li>Les classes rares (tempête, semis manqué, eau, voie d'eau, bord de champ, plantes doubles) ont un IoU proche de zéro.</li>
           <li>Un seul jeu de données (Agriculture-Vision, version réduite) : pas de garantie pour une autre région ou saison.</li>
         </ul></div>
-        <div><h4>Compétences</h4><div class="t"><span>Python</span><span>PyTorch</span><span>segmentation d'images</span><span>U-Net</span><span>DeepLabv3+</span><span>évaluation sans fuite</span><span>calibration</span><span>analyse d'erreurs</span></div></div>
+        <div><h4>Compétences</h4><div class="t"><span>Python</span><span>PyTorch</span><span>segmentation d'images</span><span>U-Net</span><span>DeepLabv3+</span><span>évaluation sans fuite</span><span>calibration</span><span>analyse d'erreurs</span><span>travail en binôme</span></div></div>
       </div></div></div>
     </article>
 
